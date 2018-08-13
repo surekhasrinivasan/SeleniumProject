@@ -6,6 +6,8 @@ using System.Threading;
 class Program
 {
     static IWebDriver driver = new ChromeDriver();
+    static IWebElement dropDownMenu;
+    static IWebElement elementFromDropDownMenu;
     static IWebElement element;
     static IWebElement textBox;
     static IWebElement radioButton;
@@ -13,9 +15,7 @@ class Program
     //static IWebElement popUp;
     static IWebElement alertButton;
     static IAlert alert;
-    static IWebElement dropDownMenu;
-    static IWebElement elementFromDropDownMenu;
-
+    
     static void Main()
     {
         driver.Navigate().GoToUrl("http://executeautomation.com/demosite/index.html?UserName=&Password=&Login=Login");
@@ -126,7 +126,8 @@ class Program
         alert.Accept();
 
         Thread.Sleep(3000);
-        driver.Quit();
+
+        driver.Quit(); //driver.Close(); can also be used to close the current open window
     }
 
     private static void GreenMessage(string message)
