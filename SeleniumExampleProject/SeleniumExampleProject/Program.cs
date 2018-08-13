@@ -10,10 +10,12 @@ class Program
     static IWebElement textBox;
     static IWebElement radioButton;
     static IWebElement checkBox;
-    static IWebElement popUp;
+    //static IWebElement popUp;
     static IWebElement alertButton;
     static IAlert alert;
-    
+    static IWebElement dropDownMenu;
+    static IWebElement elementFromDropDownMenu;
+
     static void Main()
     {
         driver.Navigate().GoToUrl("http://executeautomation.com/demosite/index.html?UserName=&Password=&Login=Login");
@@ -21,7 +23,19 @@ class Program
         driver.Manage().Window.Maximize();
 
         Thread.Sleep(3000);
-             
+
+        //Dropdown element
+        dropDownMenu = driver.FindElement(By.XPath("//*[@id=\"TitleId\"]"));
+        dropDownMenu.Click();
+
+        elementFromDropDownMenu = driver.FindElement(By.CssSelector("#TitleId>option:nth-child(2)"));
+        elementFromDropDownMenu.Click();
+
+        Console.WriteLine("The selected value is: " + elementFromDropDownMenu.GetAttribute("value"));
+
+        Thread.Sleep(3000);
+
+
         //Element can be found by name, id, CSS selector, XPath
         try
         {
