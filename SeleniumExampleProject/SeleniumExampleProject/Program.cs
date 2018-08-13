@@ -15,19 +15,22 @@ class Program
 
         Thread.Sleep(3000);
 
-        //Element can be found by name, id, CSS selector, XPath
-        IWebElement element = driver.FindElement(By.Name("Initial"));
-
-        if (element.Displayed)
+        try
         {
-            //System.Console.WriteLine("Yes I can see the element!!");
-            GreenMessage("Yes I can see the element!!");
+            //Element can be found by name, id, CSS selector, XPath
+            IWebElement element = driver.FindElement(By.Name("Initial"));
+
+            if (element.Displayed)
+            {
+                //System.Console.WriteLine("Yes I can see the element!!");
+                GreenMessage("Yes I can see the element!!");
+            }            
         }
-        else
+        catch (NoSuchElementException)
         {
             //System.Console.WriteLine("No I cannot see the element!!");
-            RedMessage("No I cannot see the element!!");
-        }
+            RedMessage("No I cannot see the element!!");            
+        }       
 
         driver.Quit();
     }
