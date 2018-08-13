@@ -9,6 +9,7 @@ class Program
     static IWebElement element;
     static IWebElement textBox;
     static IWebElement radioButton;
+    static IWebElement checkBox;
     
     static void Main()
     {
@@ -66,7 +67,25 @@ class Program
         }
 
         Thread.Sleep(5000);
+
+        //CheckBox
+        checkBox = driver.FindElement(By.CssSelector("#details > table > tbody > tr:nth-child(6) > td:nth-child(2) > input[type=\"checkbox\"]:nth-child(1)"));
+
+        if (checkBox.GetAttribute("checked") == "true")
+        {
+            Console.WriteLine("The checkbox is checked");
+        }
+        else
+        {
+            Console.WriteLine("The checkbox is NOT checked");
+        }
         
+        checkBox = driver.FindElement(By.CssSelector("#details > table > tbody > tr:nth-child(6) > td:nth-child(2) > input[type=\"checkbox\"]:nth-child(2)"));
+        checkBox.Click();
+        Console.WriteLine("The value of the checked box is: " + checkBox.GetAttribute("value"));
+
+        Thread.Sleep(5000);
+
         driver.Quit();
     }
 
