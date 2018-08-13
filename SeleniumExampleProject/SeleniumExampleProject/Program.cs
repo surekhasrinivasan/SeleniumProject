@@ -11,7 +11,9 @@ class Program
     static IWebElement radioButton;
     static IWebElement checkBox;
     static IWebElement popUp;
-        
+    static IWebElement alertButton;
+    static IAlert alert;
+    
     static void Main()
     {
         driver.Navigate().GoToUrl("http://executeautomation.com/demosite/index.html?UserName=&Password=&Login=Login");
@@ -88,15 +90,28 @@ class Program
         Thread.Sleep(5000);
 
         //Popup element
-        popUp = driver.FindElement(By.XPath("//*[@id=\"details\"]/div[1]/p/a"));
-        popUp.Click();
+        //popUp = driver.FindElement(By.XPath("//*[@id=\"details\"]/div[1]/p/a"));
+        //popUp.Click();
+
+        //Thread.Sleep(5000);
+
+        //driver.SwitchTo().DefaultContent();
+
+        //Thread.Sleep(3000);
+
+
+        //Alert
+        alertButton = driver.FindElement(By.XPath("//*[@id=\"details\"]/div[2]/p/input"));
+        alertButton.Click();
 
         Thread.Sleep(5000);
 
-        driver.SwitchTo().DefaultContent();
+        alert = driver.SwitchTo().Alert();
+        Console.WriteLine(alert.Text);
+
+        alert.Accept();
 
         Thread.Sleep(3000);
-        
         driver.Quit();
     }
 
